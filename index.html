@@ -48,7 +48,7 @@
 <button class="back-to-top" id="backToTop" type="button" aria-label="回到頁首" title="回到頁首">↑</button>
 <script>
 const tabs=[...document.querySelectorAll('.tab')], panels=[...document.querySelectorAll('.panel')];
-function show(id,scroll=true){tabs.forEach(t=>t.classList.toggle('active',t.dataset.tab===id));panels.forEach(p=>p.classList.toggle('active',p.id===id));const r=document.getElementById('daycamp-rules');if(r)r.classList.toggle('hidden',id==='home'||id==='trip');history.replaceState(null,'','#'+id);if(scroll)window.scrollTo({top:0,behavior:'smooth'});}
+function show(id,scroll=true){tabs.forEach(t=>t.classList.toggle('active',t.dataset.tab===id));panels.forEach(p=>p.classList.toggle('active',p.id===id));const r=document.getElementById('daycamp-rules');if(r)r.classList.toggle('hidden',id==='home'||id==='trip');history.replaceState(null,'','#'+id);if(scroll){const nav=document.querySelector('.tabs');const y=nav.getBoundingClientRect().top+window.scrollY;window.scrollTo({top:y,behavior:'smooth'});}}
 tabs.forEach(t=>t.addEventListener('click',()=>show(t.dataset.tab,true)));
 const hash=location.hash.slice(1);if(document.getElementById(hash))show(hash,false);else{const r=document.getElementById('daycamp-rules');if(r)r.classList.add('hidden');}
 const backToTop=document.getElementById('backToTop');
